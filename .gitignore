@@ -1,5 +1,6 @@
 #intellij ignore
 *.ml
+*.iml
 *.ipr
 *.iws
 .idea/
