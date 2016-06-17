@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
  */
 public class StringCalculator {
 
-
-
     public static final int SHOULD_IGNORE_NUM_WHEN_ADD_IT = 1000;
 
     public static final String DIGITAL_REGEX = "-?\\d+";
@@ -46,9 +44,9 @@ public class StringCalculator {
     }
 
     private boolean isNumsStrContainSingleNum(String numsStr) {
-        Matcher singelNumWithDelimiterMatcher = Pattern.compile(DIGITAL_REGEX).matcher(numsStr);
+        Matcher digitalMatcher = Pattern.compile(DIGITAL_REGEX).matcher(numsStr);
         int theAmountOfNumInStr = 0;
-        while (singelNumWithDelimiterMatcher.find()) {
+        while (digitalMatcher.find()) {
             theAmountOfNumInStr++;
             if (theAmountOfNumInStr > 1) {
                 return false;
@@ -159,9 +157,8 @@ public class StringCalculator {
         }
 
         private List<String> retrieveDelimitersFromDelimiterDefinedExpression(String delimiterDefinedExpression) {
-            List<String> delimiters = new ArrayList<String>();
+            List<String> delimiters = new ArrayList<>();
             Arrays.stream(new String[]{USER_DEFINED_DELIMITER_WITH_BRACKET, USER_DEFINED_DELIMITER_WITHOUT_BRACKET}).anyMatch((item)->{
-                System.out.println(item);
                 Matcher matcher = Pattern.compile(item).matcher(delimiterDefinedExpression);
                 while (matcher.find()) {
                     String regex = Pattern.quote(matcher.group(1));
